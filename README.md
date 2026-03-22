@@ -120,9 +120,9 @@ You can manage, pause, or revoke keys anytime from your [API Keys](https://app.r
 - **Get an API key:** [app.reckonapp.io/signup](https://app.reckonapp.io/signup)
 - **Manage API keys:** [app.reckonapp.io/api-keys](https://app.reckonapp.io/api-keys)
 - **Support:** [support.reckonapp.io](https://support.reckonapp.io)
-- **Privacy:** [reckonapp.io/privacy](https://reckonapp.io/privacy)
+- **Privacy:** [reckonapp.io/privacy](https://reckonapp.io/privacy-policy)
+- **Terms of Service:** [reckonapp.io/privacy](https://reckonapp.io/terms-of-service)
 - **MCP Protocol:** [modelcontextprotocol.io](https://modelcontextprotocol.io)
-- **Full MCP setup docs:** [docs/mcp-setup.md](docs/mcp-setup.md)
 
 ---
 
