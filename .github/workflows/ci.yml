@@ -23,4 +23,4 @@ jobs:
         run: npm audit --audit-level=high
 
       - name: Build check
-        run: npx wrangler deploy --dry-run
+        run: cp wrangler.jsonc.example wrangler.jsonc && npx wrangler deploy --dry-run
