@@ -1,0 +1,39 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "reckon-mcp-server",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-12-01",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	/**
+   * Environment variables (non-secret).
+   *
+   * Required secrets — set via `wrangler secret put <KEY>`.
+   * See .env.example for the full list.
+   */
+	"vars": {
+		"RECKON_API_BASE_URL": "https://api.reckonapp.io",
+		"ALLOWED_ORIGINS": "*"
+	},
+	"observability": {
+		"enabled": true
+	},
+	// Create a KV namespace: wrangler kv namespace create OAUTH_KV
+	// Then paste the id below.
+	"kv_namespaces": [
+		{
+			"binding": "OAUTH_KV",
+			"id": "your-kv-namespace-id",
+			"preview_id": "your-kv-namespace-id"
+		}
+	],
+	// Optional: set a custom domain for your deployment.
+	"routes": [
+		{
+			"pattern": "your-domain.example.com",
+			"custom_domain": true,
+			"zone_name": "example.com"
+		}
+	]
+}

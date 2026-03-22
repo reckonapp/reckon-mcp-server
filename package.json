@@ -1,0 +1,22 @@
+{
+  "name": "reckon-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for AI-powered email verification. Connect Claude, ChatGPT, Cursor, and any MCP client to Reckon's email verification API.",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "dependencies": {
+    "@cloudflare/workers-oauth-provider": "^0.3.0",
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "agents": "^0.7.9",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260317.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.76.0"
+  }
+}
