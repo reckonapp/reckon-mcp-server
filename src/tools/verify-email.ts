@@ -9,7 +9,7 @@ import { logToolCall } from "../logging.js";
 import { pushMetrics } from "../metrics.js";
 
 export const VERIFY_EMAIL_DESCRIPTION =
-  "Verify an email address. Returns deliverability status, format validity, domain info, and risk flags (disposable, role-based, accept-all, mailbox full, plus addressing). Each call consumes one Reckon credit.";
+  "Verify an email address. Returns deliverability status, format validity, domain info, and risk flags (disposable, role-based, accept-all, mailbox full, plus addressing). Each call consumes one credit.";
 
 export async function handleVerifyEmail(
   request: Request,

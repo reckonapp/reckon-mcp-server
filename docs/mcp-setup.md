@@ -37,7 +37,7 @@ Add the endpoint above in your client's MCP settings. When you connect, you'll b
 
 ### verify_email
 
-Verifies an email address and returns deliverability status, format validity, domain info, and risk flags (disposable, role-based, accept-all, mailbox full, plus addressing). Each successful call consumes one Reckon credit.
+Verifies an email address and returns deliverability status, format validity, domain info, and risk flags (disposable, role-based, accept-all, mailbox full, plus addressing). Each successful call consumes one credit.
 
 **Input:**
 
@@ -112,7 +112,7 @@ These examples show how the MCP server behaves when you use it from an AI assist
 “Verify john@example.com” or “Is support@acme.org a valid, deliverable email?”
 
 **What happens:**  
-The assistant calls the `verify_email` tool with the given address. The server sends the request to the Reckon API and returns the result. You see the full verification response: status (e.g. `valid`, `invalid`, `unknown`), format and domain checks, and risk flags (disposable, role-based, accept-all, etc.). One Reckon credit is consumed for a successful verification.
+The assistant calls the `verify_email` tool with the given address. The server sends the request to the Reckon API and returns the result. You see the full verification response: status (e.g. `valid`, `invalid`, `unknown`), format and domain checks, and risk flags (disposable, role-based, accept-all, etc.). One credit is consumed for a successful verification.
 
 ---
 
@@ -132,7 +132,7 @@ The assistant calls the `check_credits` tool (no input required). The server ret
 “Verify sales@mycompany.com and then tell me how many credits I have left.”
 
 **What happens:**  
-The assistant first calls `verify_email` with `sales@mycompany.com`. You get the deliverability and risk details for that address, and one credit is used. Then it calls `check_credits` and reports your updated balance (e.g. “Verification complete. You have 999 credits remaining.”). If you have no credits, the first call fails with “Insufficient credits” and the assistant can explain that you need to add credits at app.reckonapp.io; the assistant may still call `check_credits` to confirm the balance is zero.
+The assistant first calls `verify_email` with `sales@mycompany.com`. You get the deliverability and risk details for that address, and one credit is used. Then it calls `check_credits` and reports your updated balance (e.g. “Verification complete. You have 999 credits remaining.”). If you have no credits, the first call fails with “Insufficient credits” and the assistant may still call `check_credits` to confirm the balance is zero.
 
 ---
 
@@ -144,7 +144,7 @@ Errors are returned as MCP/JSON-RPC errors with messages suitable for display. U
 |-----------|--------------------|
 | **400** — Invalid request | “Invalid request parameters.” Check input (e.g. valid email format for `verify_email`). |
 | **401** — Not authenticated | Sign in again or re-authorize the MCP server in your client. |
-| **402** — Insufficient credits | “Insufficient credits. Visit https://app.reckonapp.io to add credits to your account.” Add credits in the Reckon dashboard. |
+| **402** — Insufficient credits | “Insufficient credits.” Add credits in the Reckon dashboard. |
 | **429** — Rate limit | “Rate limit exceeded.” The error may include a retry-after value; wait before retrying. |
 | **5xx** — Server error | “Internal server error (status). Please try again.” Retry later or contact support if it persists. |
 | **Other 4xx** | “Request failed (status). Please try again.” Check request format and parameters. |

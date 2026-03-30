@@ -168,15 +168,6 @@ function renderLoginForm(
       color: #a3a3a3;
       border: 1px solid #404040;
     }
-    .footer {
-      margin-top: 1.5rem;
-      font-size: 0.875rem;
-      color: #a3a3a3;
-    }
-    .footer a {
-      color: #f97316;
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
@@ -200,7 +191,6 @@ ${scopeList}
         <button type="submit" name="action" value="deny">Deny</button>
       </div>
     </form>
-    <p class="footer">Don't have an account? <a href="https://app.reckonapp.io/signup">Sign up now</a></p>
   </div>
 </body>
 </html>`;

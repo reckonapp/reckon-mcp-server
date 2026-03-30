@@ -38,7 +38,7 @@ export function mapApiError(
         authSource === "oauth" ? OAUTH_KEY_DEACTIVATED_MESSAGE : "Invalid or missing API key. Get yours at https://app.reckonapp.io";
       break;
     case 402:
-      base.message = "Insufficient credits. Visit https://app.reckonapp.io to add credits to your account.";
+      base.message = "Insufficient credits.";
       break;
     case 429:
       base.message = "Rate limit exceeded.";

@@ -18,7 +18,7 @@ Verify email addresses in real-time directly from Claude, ChatGPT, Cursor, Winds
 > - **Domain:** acme.com exists and accepts mail
 > - **Risk flags:** Role-based address (sales@), not disposable, not accept-all
 >
-> One Reckon credit was used for this verification. You have 4,999 credits remaining.
+> One credit was used for this verification. You have 4,999 credits remaining.
 
 ---
 
@@ -60,7 +60,7 @@ Get your API key at [app.reckonapp.io/api-keys](https://app.reckonapp.io/api-key
 
 ### `verify_email`
 
-Verify an email address. Returns deliverability status, format validity, domain info, and risk flags (disposable, role-based, accept-all, mailbox full, plus addressing). Each call consumes one Reckon credit.
+Verify an email address. Returns deliverability status, format validity, domain info, and risk flags (disposable, role-based, accept-all, mailbox full, plus addressing). Each call consumes one credit.
 
 **Input:**
 
