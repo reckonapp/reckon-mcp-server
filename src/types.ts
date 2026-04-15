@@ -44,7 +44,7 @@ export interface CreditBalanceResponse {
   [key: string]: unknown;
 }
 
-/** Metric event pushed to the Reckon API */
+/** Metric event pushed to Reckon. */
 export interface McpMetricEvent {
   tool: string;
   status: "success" | "error";
