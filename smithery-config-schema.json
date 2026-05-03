@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "apiKey": {
+      "type": "string",
+      "title": "API key",
+      "description": "Optional. Use when your environment cannot complete interactive sign-in; the value is sent to the MCP server on the x-api-key header.",
+      "x-from": { "header": "x-api-key" }
+    }
+  },
+  "required": []
+}

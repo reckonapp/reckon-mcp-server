@@ -117,7 +117,16 @@ You can manage, pause, or revoke keys anytime from your [API Keys](https://app.r
 
 ## Discovery
 
-Registries and clients can read machine-readable MCP metadata at [`https://mcp.reckonapp.io/.well-known/mcp/server-card.json`](https://mcp.reckonapp.io/.well-known/mcp/server-card.json) (server info, OAuth, tools).
+Registries and clients can read machine-readable MCP metadata at [`https://mcp.reckonapp.io/.well-known/mcp/server-card.json`](https://mcp.reckonapp.io/.well-known/mcp/server-card.json) (server info, OAuth, tools, and the same optional API key config schema used for Smithery).
+
+**Smithery:** If the dashboard warns that no config schema was provided, attach the JSON Schema from [`smithery-config-schema.json`](smithery-config-schema.json) when publishing or updating the external URL (see [Smithery external publish — config schema](https://smithery.ai/docs/build/external#config-schema)). Example with the [Smithery CLI](https://smithery.ai/docs/concepts/cli):
+
+```bash
+smithery mcp publish "https://mcp.reckonapp.io/mcp" -n "@your-namespace/your-server-name" \
+  --config-schema "$(jq -c . smithery-config-schema.json)"
+```
+
+Interactive sign-in (OAuth) remains the primary path; the schema only adds an **optional** API key for environments that need header-based access.
 
 ---
 

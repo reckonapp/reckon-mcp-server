@@ -26,6 +26,7 @@ import { createServer } from "./server.js";
 import { validateOrigin } from "./origin.js";
 import { CHECK_CREDITS_DESCRIPTION } from "./tools/check-credits.js";
 import { VERIFY_EMAIL_DESCRIPTION } from "./tools/verify-email.js";
+import smitheryConfigSchema from "../smithery-config-schema.json";
 
 const corsOptions = {
   allowOrigin: "*",
@@ -49,6 +50,7 @@ function mcpServerCard() {
   return {
     serverInfo: { name: "reckon", version: "1.0.0" },
     authentication: { required: true, schemes: ["oauth2"] },
+    configSchema: smitheryConfigSchema,
     tools: [
       {
         name: "verify_email",
