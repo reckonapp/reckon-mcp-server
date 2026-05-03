@@ -26,6 +26,7 @@ import { createServer } from "./server.js";
 import { validateOrigin } from "./origin.js";
 import { CHECK_CREDITS_DESCRIPTION } from "./tools/check-credits.js";
 import { VERIFY_EMAIL_DESCRIPTION } from "./tools/verify-email.js";
+import { checkCreditsToolAnnotations, verifyEmailToolAnnotations } from "./tool-annotations.js";
 import {
   checkCreditsOutputJsonSchema,
   verifyEmailOutputJsonSchema,
@@ -71,12 +72,14 @@ function mcpServerCard() {
           required: ["email"],
         },
         outputSchema: verifyEmailOutputJsonSchema,
+        annotations: verifyEmailToolAnnotations,
       },
       {
         name: "check_credits",
         description: CHECK_CREDITS_DESCRIPTION,
         inputSchema: { type: "object", properties: {} },
         outputSchema: checkCreditsOutputJsonSchema,
+        annotations: checkCreditsToolAnnotations,
       },
     ],
     resources: [],

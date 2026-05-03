@@ -8,6 +8,7 @@ import { handleVerifyEmail } from "./tools/verify-email.js";
 import { handleCheckCredits } from "./tools/check-credits.js";
 import { VERIFY_EMAIL_DESCRIPTION } from "./tools/verify-email.js";
 import { CHECK_CREDITS_DESCRIPTION } from "./tools/check-credits.js";
+import { checkCreditsToolAnnotations, verifyEmailToolAnnotations } from "./tool-annotations.js";
 import { checkCreditsOutputSchema, verifyEmailOutputSchema } from "./tool-output-schemas.js";
 
 /** OAuth props from workers-oauth-provider (apiKey for downstream calls). */
@@ -35,7 +36,7 @@ export function createServer(
       description: VERIFY_EMAIL_DESCRIPTION,
       inputSchema: { email: z.string().email().describe("The email address to verify") },
       outputSchema: verifyEmailOutputSchema,
-      annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
+      annotations: verifyEmailToolAnnotations,
     },
     (args) => handleVerifyEmail(request, env, ctx, args, oauthProps)
   );
@@ -46,7 +47,7 @@ export function createServer(
       description: CHECK_CREDITS_DESCRIPTION,
       inputSchema: {},
       outputSchema: checkCreditsOutputSchema,
-      annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+      annotations: checkCreditsToolAnnotations,
     },
     () => handleCheckCredits(request, env, ctx, oauthProps)
   );
