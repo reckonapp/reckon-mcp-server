@@ -115,6 +115,12 @@ You can manage, pause, or revoke keys anytime from your [API Keys](https://app.r
 
 ---
 
+## Discovery
+
+Registries and clients can read machine-readable MCP metadata at [`https://mcp.reckonapp.io/.well-known/mcp/server-card.json`](https://mcp.reckonapp.io/.well-known/mcp/server-card.json) (server info, OAuth, tools).
+
+---
+
 ## Links
 
 - **Get an API key:** [app.reckonapp.io/signup](https://app.reckonapp.io/signup)

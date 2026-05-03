@@ -12,6 +12,7 @@
 //   GET /.well-known/openai-apps-challenge → OpenAI app verification token (no auth)
 //   GET /.well-known/oauth-authorization-server → RFC 8414 AS metadata (no auth)
 //   GET /.well-known/oauth-protected-resource   → RFC 9728 metadata (no auth)
+//   GET /.well-known/mcp/server-card.json → MCP static server card (no auth)
 //   POST/GET /mcp, /sse, /sse/messages   → MCP transport (X-API-Key or Bearer)
 //   /authorize, /token, /register, /.well-known/oauth-authorization-server → OAuthProvider
 //   *                                    → 404 or OAuthProvider defaultHandler
@@ -23,6 +24,8 @@ import { reckonAuthHandler } from "./auth/handler.js";
 import { mcpRouter } from "./mcp-router.js";
 import { createServer } from "./server.js";
 import { validateOrigin } from "./origin.js";
+import { CHECK_CREDITS_DESCRIPTION } from "./tools/check-credits.js";
+import { VERIFY_EMAIL_DESCRIPTION } from "./tools/verify-email.js";
 
 const corsOptions = {
   allowOrigin: "*",
@@ -38,6 +41,38 @@ function protectedResourceMetadata(origin: string) {
     authorization_servers: [origin],
     scopes_supported: ["verify", "credits"],
     bearer_methods_supported: ["header"],
+  };
+}
+
+/** Static MCP server card for registries that cannot scan the auth-walled /mcp endpoint. */
+function mcpServerCard() {
+  return {
+    serverInfo: { name: "reckon", version: "1.0.0" },
+    authentication: { required: true, schemes: ["oauth2"] },
+    tools: [
+      {
+        name: "verify_email",
+        description: VERIFY_EMAIL_DESCRIPTION,
+        inputSchema: {
+          type: "object",
+          properties: {
+            email: {
+              type: "string",
+              format: "email",
+              description: "The email address to verify",
+            },
+          },
+          required: ["email"],
+        },
+      },
+      {
+        name: "check_credits",
+        description: CHECK_CREDITS_DESCRIPTION,
+        inputSchema: { type: "object", properties: {} },
+      },
+    ],
+    resources: [],
+    prompts: [],
   };
 }
 
@@ -130,6 +165,13 @@ export default {
     if (url.pathname === "/.well-known/oauth-protected-resource") {
       const origin = new URL(request.url).origin;
       const res = jsonResponse(protectedResourceMetadata(origin));
+      console.log(request.method, url.pathname, 200, `${Date.now() - start}ms`);
+      return res;
+    }
+
+    // ── MCP static server card (no auth) —───────────────────────────────
+    if (url.pathname === "/.well-known/mcp/server-card.json" && request.method === "GET") {
+      const res = jsonResponse(mcpServerCard());
       console.log(request.method, url.pathname, 200, `${Date.now() - start}ms`);
       return res;
     }
