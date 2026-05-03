@@ -2,11 +2,13 @@
 // Reckon MCP Server — verify_email tool
 // ============================================================================
 
+import { z } from "zod";
 import type { OAuthProps } from "../server.js";
 import { extractApiKey } from "../auth.js";
 import { mapApiError } from "../errors.js";
 import { logToolCall } from "../logging.js";
 import { pushMetrics } from "../metrics.js";
+import { verifyEmailOutputSchema } from "../tool-output-schemas.js";
 
 export const VERIFY_EMAIL_DESCRIPTION =
   "Verify an email address. Returns deliverability status, format validity, domain info, and risk flags (disposable, role-based, accept-all, mailbox full, plus addressing). Each call consumes one credit.";
@@ -17,7 +19,10 @@ export async function handleVerifyEmail(
   ctx: ExecutionContext,
   args: { email: string },
   oauthProps?: OAuthProps
-): Promise<{ content: Array<{ type: "text"; text: string }> }> {
+): Promise<{
+  content: Array<{ type: "text"; text: string }>;
+  structuredContent: z.infer<typeof verifyEmailOutputSchema>;
+}> {
   const start = Date.now();
   let apiKey: string;
   let keyType: "pk" | "sk" = "pk";
@@ -84,7 +89,8 @@ export async function handleVerifyEmail(
     throw new Error(errMessage);
   }
 
-  const body = (await res.json()) as Record<string, unknown>;
+  const raw = await res.json();
+  const structuredContent = verifyEmailOutputSchema.parse(raw);
   ctx.waitUntil(
     pushMetrics(
       { tool: "verify_email", status: "success", duration_ms: durationMs, key_type: keyType },
@@ -100,6 +106,7 @@ export async function handleVerifyEmail(
   });
 
   return {
-    content: [{ type: "text" as const, text: JSON.stringify(body) }],
+    content: [{ type: "text" as const, text: JSON.stringify(structuredContent) }],
+    structuredContent,
   };
 }

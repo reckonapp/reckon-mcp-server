@@ -8,6 +8,7 @@ import { handleVerifyEmail } from "./tools/verify-email.js";
 import { handleCheckCredits } from "./tools/check-credits.js";
 import { VERIFY_EMAIL_DESCRIPTION } from "./tools/verify-email.js";
 import { CHECK_CREDITS_DESCRIPTION } from "./tools/check-credits.js";
+import { checkCreditsOutputSchema, verifyEmailOutputSchema } from "./tool-output-schemas.js";
 
 /** OAuth props from workers-oauth-provider (apiKey for downstream calls). */
 export type OAuthProps = { apiKey: string; keyId?: number; accountId?: number } | undefined;
@@ -28,19 +29,25 @@ export function createServer(
     version: "1.0.0",
   });
 
-  server.tool(
+  server.registerTool(
     "verify_email",
-    VERIFY_EMAIL_DESCRIPTION,
-    { email: z.string().email().describe("The email address to verify") },
-    { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
+    {
+      description: VERIFY_EMAIL_DESCRIPTION,
+      inputSchema: { email: z.string().email().describe("The email address to verify") },
+      outputSchema: verifyEmailOutputSchema,
+      annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
+    },
     (args) => handleVerifyEmail(request, env, ctx, args, oauthProps)
   );
 
-  server.tool(
+  server.registerTool(
     "check_credits",
-    CHECK_CREDITS_DESCRIPTION,
-    {},
-    { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+    {
+      description: CHECK_CREDITS_DESCRIPTION,
+      inputSchema: {},
+      outputSchema: checkCreditsOutputSchema,
+      annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+    },
     () => handleCheckCredits(request, env, ctx, oauthProps)
   );
 

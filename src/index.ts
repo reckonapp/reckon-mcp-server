@@ -26,6 +26,10 @@ import { createServer } from "./server.js";
 import { validateOrigin } from "./origin.js";
 import { CHECK_CREDITS_DESCRIPTION } from "./tools/check-credits.js";
 import { VERIFY_EMAIL_DESCRIPTION } from "./tools/verify-email.js";
+import {
+  checkCreditsOutputJsonSchema,
+  verifyEmailOutputJsonSchema,
+} from "./tool-output-schemas.js";
 import smitheryConfigSchema from "../smithery-config-schema.json";
 
 const corsOptions = {
@@ -66,11 +70,13 @@ function mcpServerCard() {
           },
           required: ["email"],
         },
+        outputSchema: verifyEmailOutputJsonSchema,
       },
       {
         name: "check_credits",
         description: CHECK_CREDITS_DESCRIPTION,
         inputSchema: { type: "object", properties: {} },
+        outputSchema: checkCreditsOutputJsonSchema,
       },
     ],
     resources: [],
