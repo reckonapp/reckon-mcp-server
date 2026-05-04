@@ -128,6 +128,8 @@ smithery mcp publish "https://mcp.reckonapp.io/mcp" -n "@your-namespace/your-ser
 
 Interactive sign-in (OAuth) remains the primary path; the schema only adds an **optional** API key for environments that need header-based access.
 
+**Third-party directories (for example [mcp.so](https://mcp.so)):** The live MCP URL (`/mcp`) answers with **401** and OAuth metadata when neither a Bearer access token nor `X-API-Key` is present, so a crawler that only opens a session against `/mcp` cannot complete `initialize` / `tools/list` and may show an empty tool list. Prefer pointing the listing at the [server card](https://mcp.reckonapp.io/.well-known/mcp/server-card.json) if the product supports a static metadata URL, use directory-specific OAuth if offered, or supply a crawl **API key** in the directory’s settings if it forwards `X-API-Key` on MCP requests.
+
 ---
 
 ## Links
