@@ -179,4 +179,4 @@ For help with the MCP server or billing:
 
 ## Privacy policy
 
-Reckon’s privacy policy describes how we collect, use, and protect data: [reckonapp.io/privacy](https://reckonapp.io/privacy).
+Reckon’s privacy policy describes how we collect, use, and protect data: [reckonapp.io/privacy-policy](https://reckonapp.io/privacy-policy).

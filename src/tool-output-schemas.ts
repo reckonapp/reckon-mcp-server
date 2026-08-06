@@ -38,7 +38,9 @@ export const verifyEmailOutputSchema = z
 /** Shape of the upstream credits balance JSON body returned to MCP clients. */
 export const checkCreditsOutputSchema = z
   .object({
-    credits: z.number(),
+    balance: z.number(),
+    asOf: z.string(),
+    requestId: z.string(),
   })
   .passthrough();
 

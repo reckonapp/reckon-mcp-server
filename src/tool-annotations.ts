@@ -4,6 +4,7 @@
 
 /** Annotations for verify_email — consumes a credit; not idempotent. */
 export const verifyEmailToolAnnotations = {
+  title: "Verify email",
   readOnlyHint: false,
   destructiveHint: false,
   idempotentHint: false,
@@ -12,6 +13,7 @@ export const verifyEmailToolAnnotations = {
 
 /** Annotations for check_credits — read-only balance lookup. */
 export const checkCreditsToolAnnotations = {
+  title: "Check credit balance",
   readOnlyHint: true,
   destructiveHint: false,
   idempotentHint: true,
