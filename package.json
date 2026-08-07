@@ -10,7 +10,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@cloudflare/workers-oauth-provider": "^0.3.0",
+    "@cloudflare/workers-oauth-provider": "^0.8.1",
     "@modelcontextprotocol/sdk": "^1.27.1",
     "agents": "^0.7.9",
     "zod": "^4.3.6"
