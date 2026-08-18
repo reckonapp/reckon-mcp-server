@@ -25,7 +25,7 @@ Verify email addresses in real-time directly from Claude, ChatGPT, Cursor, Winds
 ## Requirements
 
 * A Reckon [account](https://app.reckonapp.io/signup), which comes with cost-free [sandbox email addresses](https://support.reckonapp.io/en/articles/12294568-test-email-addresses) as well as 25 credits for real-world trialing. 
-* An active Reckon subscription (see [pricing](https://app.reckonapp.io/pricing))
+* An active Reckon subscription (see [pricing](https://reckonapp.io/pricing))
 * A credit balance higher than zero
 
 
@@ -52,7 +52,7 @@ For clients that don't support OAuth (like Cursor), use an API key instead. Add 
 }
 ```
 
-Get your API key at [app.reckonapp.io/api-keys](https://app.reckonapp.io/api-keys).
+Get an API key at [app.reckonapp.io/api-keys](https://app.reckonapp.io/api-keys).
 
 ---
 
