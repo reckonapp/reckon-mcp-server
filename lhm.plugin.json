@@ -1,0 +1,36 @@
+{
+  "identifier": "reckonapp-reckon-mcp-server",
+  "name": "Reckon MCP Server",
+  "version": "1.0.0",
+  "description": "MCP server for reliable email verification in AI-powered workflows. Connect Claude, ChatGPT, Cursor, and any MCP client to Reckon's email verification API. Requires a Reckon account and subscription with a positive credit balance.",
+  "author": "Reckon",
+  "authorUrl": "https://github.com/reckonapp",
+  "homepage": "https://github.com/reckonapp/reckon-mcp-server",
+  "cloudEndpoint": "https://mcp.reckonapp.io/mcp",
+  "tags": ["email verification", "email", "api", "developer-tools"],
+  "tools": [
+    {
+      "name": "verify_email",
+      "description": "Verify an email address. Returns deliverability status, format validity, domain info, and risk flags (disposable, role-based, accept-all, mailbox full, plus addressing). Each call consumes one credit.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The email address to verify"
+          }
+        },
+        "required": ["email"]
+      }
+    },
+    {
+      "name": "check_credits",
+      "description": "Check the remaining email verification credit balance for the connected Reckon account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
+}
