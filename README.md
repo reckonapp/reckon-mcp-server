@@ -141,6 +141,9 @@ Interactive sign-in (OAuth) remains the primary path; the schema only adds an **
 - **Terms of Service:** [reckonapp.io/privacy](https://reckonapp.io/terms-of-service)
 - **MCP Protocol:** [modelcontextprotocol.io](https://modelcontextprotocol.io)
 
+### MCP Directories
+- [Smithery.ai](https://smithery.ai/servers/reckon/email-verifier)
+
 ---
 
 ## License
