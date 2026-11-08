@@ -35,7 +35,7 @@ Verify email addresses in real-time directly from Claude, ChatGPT, Cursor, Winds
 
 **Endpoint:** `https://mcp.reckonapp.io/mcp`
 
-Our [Claude](https://support.anthropic.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop) and [ChatGPT](https://platform.openai.com/docs/mcp) connectors are currently under review — once approved, those will be the easiest way to connect. In the meantime (and for all other MCP clients), add the endpoint in your client's MCP settings and sign in with your Reckon account when prompted.
+Our [Claude](https://claude.ai/directory/reckon) and [ChatGPT](https://chatgpt.com/plugins/plugin_asdk_app_699cb7173ba48191ae4148a2ebb71aaa?q=reckon) connectors are the easiest way to connect. For all other MCP clients, add the endpoint in your client's MCP settings and sign in with your Reckon account when prompted.
 
 For clients that don't support OAuth (like Cursor), use an API key instead. Add to `.cursor/mcp.json`:
 
